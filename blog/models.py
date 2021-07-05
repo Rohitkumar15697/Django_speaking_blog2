@@ -9,7 +9,7 @@ class blogpost(models.Model):
     title=models.CharField(max_length=250,blank=False)
     post=models.TextField()
     likes=models.ManyToManyField(User, related_name='blog_posts')
-    date=models.DateField()
+    date=models.DateTimeField(auto_now_add=True )
 
 
     def __str__(self):

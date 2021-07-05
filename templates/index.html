@@ -58,7 +58,7 @@
 
 
 
-    <br><div class='container-fluid mt-4'>
+    <br><div class='container-fluid mt-44'>
 
         <!--this is the left aside bar which is for topics of data-->
         
@@ -131,7 +131,7 @@
                                 {%for data in data%}
                                     
                            
-                                         <p> <a href={%url 'detaildata' data.id%}> {{data.title}}</a></p>
+                                         <p> <a href={%url 'detaildata' data.id%}> {{data.title}} </a></p>
                         
                                      
                                 {%endfor%}
@@ -146,11 +146,29 @@
            
             </div>
     
+<br><br>
+
+    <!-- Another container  -->
 
 
-    <!--   -->
+    <div class='container border'>
+        <div class='row'>
+            <div class='col-md-4'>
+                <p>First column</p>
+            </div>
+            <div class='col-md-4'>
+            <p>First column</p>
+            </div>
+            <div class='col-md-4'>
+            <p>First column</p>
+            </div>
+
+        </div>
+
+    </div>
 
 
 
     {%endblock%}
-        
+    
+    

@@ -1,7 +1,7 @@
 {%extends 'base.html' %}
 
 
-   {%block title%} Detail Page {%endblock%}
+   {%block title%} Blog {{data.id}} {%endblock%}
 
     {%block style%}
 
@@ -16,18 +16,25 @@
 
 
     <div class='container'>
-        <b>Title- {{data.title}}</b><br>
+        <div class='row'>
         
-        <small><b>Category</b>- {{data.topic}}</small> <br>
+
+        <div class='col-md-8'>
+        <b class='h2'> Title- {{data.title}}</b><br>
+        <small class='text-muted'><b>Author</b>- {{data.created_by}}</small><br>
+        
+        <small class='text-muted'l><b>Category</b>- {{data.topic}}</small> <br>
 
         <!--Printing date of created-->
-        <small style='color:gray;'>{{data.date}}</small> 
+        <small class='text-muted'>Uploaded on {{data.date}}</small> 
 
-        <div class='postdiv'>
-                <p style='font-family:serif;color:rgb(70, 62, 62);'> {{data.post}}</p>
+        
+               <br><br> 
+               
+               <p class='lead'> {{data.post}}</p><br>
                 
-        </div>
-        <small><b>Author</b>- {{data.created_by}}</small><br><br>
+        
+        
         
 
         <!--Like section-->
@@ -45,7 +52,8 @@
 
                         </form>
             {%else%}
-                {{data.likes.count}}  likes
+                {{data.likes.count}}  Likes
+                
                         
         {%endif%}  
 
@@ -64,6 +72,17 @@
 
             {%endif%}
         {%endif%}
+
+        </div>
+        <div class='col-md-2'>
+        </div>
+
+        </div>
+    </div>
+
+
+
+
 
         <br><br>    
 
@@ -117,7 +136,9 @@
     
 
 {%endblock%}
+{%block footer%}
 
+{%endblock%}
 
 
 

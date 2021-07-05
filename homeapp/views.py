@@ -1,10 +1,10 @@
 from django.shortcuts import redirect, render,render,HttpResponse,get_object_or_404
 from django.http import HttpResponseRedirect
 from blog.models import blogpost,CommentModel
-import random
-from django.views.generic import ListView,DetailView,DeleteView,UpdateView,CreateView
+
+from django.views.generic import ListView,DetailView,DeleteView,UpdateView
 from django.urls import reverse_lazy,reverse
-from blog.forms import Myblogform
+
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
@@ -17,10 +17,9 @@ def index(request):
     
     #This is for showing topic names in index page
     topic_names=blogpost.objects.values_list('topic',flat=True).distinct() 
-    
-     
 
     blog_data=postdata[:3]
+    
     
     return render(request,'index.html',{'data':postdata,'blog_data':blog_data,'topics':topic_names,'count':count})
 

@@ -39,7 +39,7 @@
            
       </ul>
       <!--This is the search bar in webpage-->
-      <form method='get' class='d-flex' action='search' >
+      <form method='get' class='d-flex' action='/search' >
 
             <input type='text' class='form-control me-2' name='search_me' placeholder='Search'>
             <input type='submit' value='Search' class='btn btn-outline-success btn-sm'>
@@ -61,10 +61,12 @@
     
     
 </div>
+{%block footer%}
         <div class='container-fluid h-25 bg-dark text-white mt-5'>
 
             &copy; Copyright Content
         
         </div>
+{%endblock%}
 </body>
 </html>

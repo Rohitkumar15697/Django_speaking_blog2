@@ -53,12 +53,12 @@
                                         {%for data in data%}
                                
                                     
-                                        <a href={%url 'detaildata' data.id%}> {{data.title}}</a>
+                                        <a href={%url 'detaildata' data.id%}> {{data.title}}</a><br><br>
                                     
                                
                                     {%endfor%}
                                 {%endif%}
-
+                                    <br>
                                
                                 <a href={%url 'user_blogs' %}>All blogs( {{count}} )</a>
                 </div>
@@ -68,7 +68,7 @@
         </div>
     </div>
                                        
-
+<br>
     <div class='container bg-light'>
                         <!--This is for  the profile webpage full data on middle of webpage -->
 
@@ -78,15 +78,17 @@
                                         
                                         
                                             <h4><a href={%url 'detaildata' data.id%}>{{data.title}}</a></h4>
-                                            <br>
+                                            <span class='text-muted'>Author- {{data.created_by}} </span><br>
+                                            
+                                            <span class='text-muted'>Uploaded on {{data.date}}</span><br><br>
 
                                             
-                                            <p>{{data.post}}  <span class='text-muted'><br>
+                                            <p>{{data.post}}  <br>
                                                 
                                                 </p><br>
                                             
                                             
-                                            <span class='text-muted'>Author- {{data.created_by}} </span><br>
+                                            
                                         
 
                                                 {{data.likes.count}} likes,
