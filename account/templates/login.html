@@ -1,0 +1,40 @@
+{%extends 'base.html' %}
+
+{%block title%}  Login   {%endblock%}
+
+{%block body%}
+
+
+
+    <div class='container '>
+        <h1>Login</h1>
+            <form method='post' class='form-group'>
+
+            {% csrf_token %}
+
+                <table class='table '>
+                    <tbody>
+
+                        <tr>
+                            <td> {{form}}</td>
+                        <tr>
+                    </tbody>
+                    
+                </table>  
+
+                    <input type='submit' value='Login' class='btn btn-primary'>  
+                                <br>
+               
+                    {%if messages%}
+                        {%for msg in messages%}
+                                {{msg}}
+                        {%endfor%}
+                    {%endif%}
+                
+            </form>
+           
+
+            
+            <p>Create an <a href={%url 'register' %}>Account</a></p>
+    </div>
+{%endblock%}

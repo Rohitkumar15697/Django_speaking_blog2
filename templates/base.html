@@ -1,0 +1,70 @@
+{% load static %}
+<html lang="en">
+<head>
+
+    <title>{% block title %} {% endblock %}</title>
+
+    
+    <link rel='stylesheet' href={%static 'css/bootstrap.min.css' %}>
+    <script src={%static 'js/bootstrap.min.js' %}></script>
+    <script src={%static 'js/jquery.min.js' %}></script>
+    
+    <style>
+    {%block style%} {%endblock%}
+    </style>
+</head>
+<body>
+
+
+    <!--Header part of the home page with navigation-->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class='navbar-brand ' href={%url 'home' %}><img src={%static 'img/wp2014678.jpg'%} class='d-inline-block ' width='50',height='50'>SpeakingBlog</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"  >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class='nav-item'><a class='nav-link' aria-current="page" href={%url 'home'%}>Home</a></li>
+        <li class='nav-item'><a class='nav-link' href='#'>About</a></li>
+        <li class='nav-item'><a class='nav-link' href={%url 'register' %}>Register </a></li>
+        <li class='nav-item'><a class='nav-link' href={%url 'login'%}>Login </a></li>
+        {%if user.is_authenticated %}
+                        
+            <li class='nav-item'><a class='nav-link' href={% url 'profile' %}> Profile</a></li>
+            <li class='nav-item'> <a class='nav-link' href={%url 'logout' %}>Logout</a>   </li>
+
+        {%endif%}
+           
+      </ul>
+      <!--This is the search bar in webpage-->
+      <form method='get' class='d-flex' action='search' >
+
+            <input type='text' class='form-control me-2' name='search_me' placeholder='Search'>
+            <input type='submit' value='Search' class='btn btn-outline-success btn-sm'>
+                                        
+        </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<div class='container-fluid mt-3'>
+    {%block body%}
+
+
+
+    {% endblock %}
+    
+    
+</div>
+        <div class='container-fluid h-25 bg-dark text-white mt-5'>
+
+            &copy; Copyright Content
+        
+        </div>
+</body>
+</html>

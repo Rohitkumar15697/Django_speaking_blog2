@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>search result</title>
+    <style>
+        a{text-decoration: none;}
+
+        a:hover{color:blue;}
+
+        section{width:80%;
+                margin:auto;}
+
+        article{
+            text-align: justify;
+                width:70%;
+                
+                background:rgb(240, 232, 232);
+                }
+    </style>
+
+</head>
+<body>
+    
+    <h1>Search Result for  '{{searched}}'</h1>
+    
+   <p> <a href={%url 'home'%}> Back to Home page </a></p>
+
+<section>There are {{count}} results for '{{searched}}''
+                    {%if result%}
+                    {%for result in result%}
+
+                <article>
+
+                    <h4><a href={%url 'detaildata' result.id%}>{{result.title}}</a></h4>
+                    
+
+                </article>
+            {%endfor%}
+
+            {%else%}
+                    <P>Sorry! No result found!</P>
+
+            {%endif%}
+
+</section>
+
+
+
+</body>
+</html>

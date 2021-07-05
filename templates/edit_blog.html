@@ -1,0 +1,43 @@
+{%extends 'base.html' %}
+<html lang="en">
+<head>
+
+   {%block title%}Edit Blog {%endblock%}
+   
+   {%block style%}
+        
+   {%endblock%}
+
+
+{%block body%}
+
+
+    <div class='container '>
+
+        {% if user.is_authenticated %}
+                {% if user.id == blogpost.created_by.id %}
+
+                <form method='post' class='form'>
+
+                    {%csrf_token%}
+
+                    {{form.as_p}}
+                        <input type='submit' class='btn btn-primary' value='Post'>
+
+                    </form>
+
+                    {%else%}
+
+                        You are not authenticated to edit this blog
+                {%endif%}
+
+
+            {%else%}
+                No allowed
+                
+        {% endif %}
+
+    </div>
+        
+    
+    {%endblock%}

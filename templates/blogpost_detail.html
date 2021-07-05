@@ -1,0 +1,124 @@
+{%extends 'base.html' %}
+
+
+   {%block title%} Detail Page {%endblock%}
+
+    {%block style%}
+
+    {%endblock%}
+    
+    
+
+
+{%block body%}
+
+
+
+
+    <div class='container'>
+        <b>Title- {{data.title}}</b><br>
+        
+        <small><b>Category</b>- {{data.topic}}</small> <br>
+
+        <!--Printing date of created-->
+        <small style='color:gray;'>{{data.date}}</small> 
+
+        <div class='postdiv'>
+                <p style='font-family:serif;color:rgb(70, 62, 62);'> {{data.post}}</p>
+                
+        </div>
+        <small><b>Author</b>- {{data.created_by}}</small><br><br>
+        
+
+        <!--Like section-->
+        
+        {%if user.is_authenticated%}        
+                        <form method='post' action="{%url 'like_post' data.pk %}" class='form-group'>
+                                                    
+                            {%csrf_token%}
+
+                            {%if user in data.likes.all%}
+                                {{data.likes.count}} Likes <button type='button' name='like' value="{{data.id}}" class='btn btn-primary disabled btn-sm'>Like</button>
+                                {%else%}
+                                {{data.likes.count}} Likes <button type='submit' name='like' value="{{data.id}}" class='btn btn-primary btn-sm'>Like</button>
+                            {%endif%}
+
+                        </form>
+            {%else%}
+                {{data.likes.count}}  likes
+                        
+        {%endif%}  
+
+        
+
+
+        <!--This is for delete and edit post in blogpost_detail page only-->
+
+        
+        {% if user.is_authenticated %}
+            {%if user.id == data.created_by.id %}
+
+                        <a href={%url 'editblog' data.pk %}>Edit</a>&nbsp;&nbsp;
+
+                        <a href={%url 'deleteblog' data.pk%}>Delete</a>
+
+            {%endif%}
+        {%endif%}
+
+        <br><br>    
+
+        <!--Comments Section-->
+        <hr>
+        <div class='container'>
+            <h2>Comments...</h2><br>
+
+
+
+                {%if user.is_authenticated%}
+                            <div class='col-md-6'>
+                                <form method='post' action="{%url 'detaildata' data.id %}/comment">
+                                    {%csrf_token%}
+                                    <div class='form-group'>
+                                        
+                                        <input type='text' name='comment_text' class='form-control' placeholder='comment...'>
+                                        <input type='submit' name='comment_button' value='Post' class='btn btn-primary btn-sm mt-2'>
+                                    </div>
+                                </form>
+                            </div>
+                        
+                {%endif%}
+
+                <!--showing comment on page-->
+                {%if not data.comments.all %}
+                    <!--if there is no comments-->
+                    No comments yet...
+
+                    {%else%}
+                        <!--if there is already some comments-->
+                        <strong>Total Comments</strong> - {{data.comments.count}} <br>
+                        
+                        <ol><br>
+
+                        <!--print all comments to template-->
+                        {%for comment in data.comments.all %}
+                            
+                        <li><strong>{{comment.name}}</strong> -
+                            <span class='text-muted'>{{comment.date_added.today}}</span> <br>
+                            {{comment.body}}</li><br>
+                        {%endfor%}
+                        <ol>
+                {%endif%}
+        </div>
+            <hr>
+
+    </div>
+
+
+    
+
+{%endblock%}
+
+
+
+
+

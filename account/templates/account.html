@@ -1,0 +1,55 @@
+{%extends 'base.html'%}
+{%block title%}  Register   {%endblock%}
+
+    
+
+
+{%block body%}
+
+    <div class='container'>
+        <h1>Register</h1>
+            <form method='post' class='form'>
+
+                {%csrf_token%}
+                <table class='table'>
+                    
+                    {%for fm in form%}
+                        <tr>
+                            <td>{{fm.label}}</td>
+                            <td>{{fm}}</td>
+                            
+                            
+                        </tr>
+                        
+                    
+                    <tr>
+                        <td></td>
+                        
+                        <td>
+                        {%if fm.errors%}
+                        {{fm.errors|striptags}}
+                        {%endif%}                      
+                        <td>
+
+                    </tr>
+                        {%endfor%} 
+                    
+
+                </table>
+                <input type='submit' value='Register' class='submit'>
+
+            </form>
+            <div class=''>
+                {%if messages%}
+                    {%for msg in messages%}
+                        {{msg}}
+                    {%endfor%}
+                {%endif%}
+
+            </div>
+
+            <h4>Go to <a style='text-decoration: none; color:rgb(57, 57, 236)' href={%url 'login'%}>Login</a></h4>
+    </div>
+
+
+{%endblock%}

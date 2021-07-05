@@ -1,0 +1,105 @@
+{%extends 'base.html'%}
+
+
+    {%block title%} Profile |  {{user.username}} {%endblock%}
+
+{%block style%}
+    a{text-decoration:none;}
+
+{%endblock%}
+
+
+
+{%block body%}
+    
+
+<div class='container-fluid'>
+           
+                    
+           
+                
+    <div class='container pt-5'>                
+        <div class='row'>
+
+            <div class='col-md-8'>           
+                        <h3>Create a Blog</h3><br>
+
+                    
+                        <!--This is the form for blog post-->
+
+                        <form method='post' class='form-group'>
+
+                            {%csrf_token%}
+
+                                
+                                 {{form.as_p}}
+
+
+                                <input type='submit' class='btn-primary' value='Post'>
+
+                            </form>
+            </div>
+
+            <div class='col-md-2'>
+
+
+
+                <div class='row'>
+                    <!--This is for aside right side all links of blog titles--> 
+
+                    <h5>blogs</h5>
+
+                                    {%if data%}
+                                        {%for data in data%}
+                               
+                                    
+                                        <a href={%url 'detaildata' data.id%}> {{data.title}}</a>
+                                    
+                               
+                                    {%endfor%}
+                                {%endif%}
+
+                               
+                                <a href={%url 'user_blogs' %}>All blogs( {{count}} )</a>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+                                       
+
+    <div class='container bg-light'>
+                        <!--This is for  the profile webpage full data on middle of webpage -->
+
+                                {%if fulldata%}
+                                    {%for data in fulldata%}
+
+                                        
+                                        
+                                            <h4><a href={%url 'detaildata' data.id%}>{{data.title}}</a></h4>
+                                            <br>
+
+                                            
+                                            <p>{{data.post}}  <span class='text-muted'><br>
+                                                
+                                                </p><br>
+                                            
+                                            
+                                            <span class='text-muted'>Author- {{data.created_by}} </span><br>
+                                        
+
+                                                {{data.likes.count}} likes,
+
+                                                {{data.comments.count}} Comments
+                                    
+
+                                    {%endfor%}
+                                {% endif %}
+
+    </div>          
+                    
+            
+</div>
+   
+{%endblock%}

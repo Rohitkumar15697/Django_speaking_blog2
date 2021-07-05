@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+
+    {%block title%} All Data{%endblock%}
+
+
+    {%block style%}
+
+    
+        {%endblock%}
+
+
+
+
+{%block body%}
+
+
+    <div class='container'>
+        <h3>All blogs ({{blogpost_list.count}})</h3>
+            {%if blogpost_list%}
+            
+                {%for data in blogpost_list%}
+
+              
+                    
+
+                    <p><a href={%url 'detaildata' data.pk %}>-{{data.title}}</a> <small>( Author- <b>{{data.created_by}})</b></small></p>   
+                    
+                    
+
+              
+
+                {%endfor%}
+
+              
+
+
+
+
+            {%endif%}
+        </div>
+ 
+
+    {%endblock%}

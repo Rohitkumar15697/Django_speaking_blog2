@@ -1,0 +1,55 @@
+{%extends 'base.html'%}
+{%block title%}Delete blog {%endblock%}
+
+
+<!--Start styling block-->
+{%block style%}
+
+    .delete_div{padding-top:100px;margin-left:50px;}
+
+    .button{    background:gray;
+                font-size:16px;
+                padding:3px;
+                cursor:pointer;
+                border:none;
+                box-shadow:1px 1px 5px black;}
+
+    .button:hover{background:red;color:white;}
+    
+    .nobutton{background:gray;padding:4px;color:black;font-size:18px;box-shadow:1px 1px 5px black;}
+
+    .nobutton:hover{color:white;background:green;}
+
+
+{%endblock%}
+<!--End style block-->
+
+
+{%block body%}
+
+
+    
+    
+
+    <div class='delete_div'>
+
+    <br><br>
+    {%if user.is_authenticated%}
+            {% if user.id == blogpost.created_by.id %}
+
+                    <form method='POST'>
+
+                        {%csrf_token%}
+                            <strong style='font-size:20px;'>Are you sure ?!</strong><br><br>
+                            
+                            <b>Yes</b>! I want to delete this post <button class='button'>Yes</button>
+
+                    </form>
+                    <br>   
+                <b>No</b>! I don't want to delete this post <a  class='nobutton' href={%url 'home' %}>No</a>
+                
+            {%endif%}
+    {%endif%}
+
+</div>
+{%endblock%}
