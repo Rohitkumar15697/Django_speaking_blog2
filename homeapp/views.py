@@ -25,15 +25,15 @@ def index(request):
 
 
 def search_result(request):
-    search_element=request.GET.get('search_me')
+    search_element=request.GET.get('search_me').strip()
     if search_element=="":
         return HttpResponse('No data for search!')
     else:
-        search_data=blogpost.objects.all().filter(Q(title__icontains=search_element) | Q(topic__icontains=search_element))
+        search_data=blogpost.objects.all().filter(Q(title__contains=search_element) | Q(topic__istartswith=search_element))
         count=len(search_data)
         print(search_result)
     
-    return render(request,'search_result.html',{'searched':search_element,'result':search_data,'count':count})
+        return render(request,'search_result.html',{'searched':search_element,'result':search_data,'count':count})
 
 
 
